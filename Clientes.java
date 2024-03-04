@@ -1,16 +1,15 @@
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-public class clientes {
+public class Clientes {
     public static void main(String[] args) {
     }
 
     public static void criar_cliente() {
         try {
-            Connection connection = conexao.getConnection();
+            Connection connection = Conexao.getConnection();
 
             Scanner sc = new Scanner(System.in);
             System.out.println("Digite o nome do cliente ");
