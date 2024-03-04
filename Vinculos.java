@@ -79,5 +79,4 @@ public class Vinculos {
         }
         return retorno_vendedor;
     }
-
 }
