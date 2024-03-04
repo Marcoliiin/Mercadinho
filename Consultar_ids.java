@@ -4,7 +4,7 @@ import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.util.Scanner;
 
-public class Vinculos {
+public class C {
     public static int vinculo_produto_fornecedor() {
         int retorno_fornecedor = 0;
 
