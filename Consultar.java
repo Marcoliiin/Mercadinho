@@ -6,8 +6,8 @@ import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.util.Scanner;
 
-public class Consultar {
-    public static void consultar_clientes() {
+public class Pesquisar {
+    public static void pesquisar_clientes() {
         try (Scanner sc = new Scanner(System.in)) {
             Connection connection = Conexao.getConnection();
 
