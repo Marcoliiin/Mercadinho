@@ -63,11 +63,12 @@ public class Consultar_ids {
              Connection connection = Conexao.getConnection()) {
 
             System.out.println("Qual é o ID do vendedor da venda?");
-            String id_vendedor = sc.nextLine();
+            int id_vendedor = sc.nextInt();
+            sc.nextLine();
 
             String sql = "SELECT id FROM vendedor WHERE id = ?";
             try (PreparedStatement consultando_id = connection.prepareStatement(sql)) {
-                consultando_id.setString(1, id_vendedor);
+                consultando_id.setInt(1, id_vendedor);
 
                 try (ResultSet query = consultando_id.executeQuery()) {
                     if (query.next()) {
