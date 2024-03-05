@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-public class _item {
+public class Venda_item {
     public static void main(String[] args) {
     }
 
