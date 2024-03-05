@@ -4,7 +4,7 @@ import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.util.Scanner;
 
-public class Vinculos {
+public class Consultar_ids {
     public static int consultar_id_fornecedor() {
         int retorno_fornecedor = 0;
 
@@ -20,7 +20,7 @@ public class Vinculos {
 
                 try (ResultSet query = consultando_id.executeQuery()) {
                     if (query.next()) {
-                        retorno_consulta_fornecedor = query.getInt(1);
+                        retorno_fornecedor = query.getInt(1);
                     }
                 }
             }
@@ -28,60 +28,61 @@ public class Vinculos {
             e.printStackTrace();
         }
 
-        return retorno_consulta_fornecedor;
+        return retorno_fornecedor;
     }
 
-    public static int consultar_id_cliente(){
+    public static int consultar_id_cliente() {
         int retorno_cliente = 0;
 
         try (Scanner sc = new Scanner(System.in);
-             Connection connection = Conexao.getConnection()){
+             Connection connection = Conexao.getConnection()) {
 
             System.out.println("Qual é o ID do cliente da venda?");
             String id_cliente = sc.nextLine();
 
             String sql = "SELECT id FROM clientes WHERE id = ?";
-            try (PreparedStatement consultando_id = connection.prepareStatement(sql)){
-                consultando_id.setString(1,id_cliente);
+            try (PreparedStatement consultando_id = connection.prepareStatement(sql)) {
+                consultando_id.setString(1, id_cliente);
 
-                try(ResultSet query = consultando_id.executeQuery()){
+                try (ResultSet query = consultando_id.executeQuery()) {
                     if (query.next()) {
-                        retorno__consulta_cliente = query.getInt(1);
+                        retorno_cliente = query.getInt(1);
                     }
                 }
             }
-        } catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-        return retorno__consulta_cliente;
+        return retorno_cliente;
     }
-    public static int consultar_id_vendedor(){
+
+    public static int consultar_id_vendedor() {
         int retorno_vendedor = 0;
 
         try (Scanner sc = new Scanner(System.in);
-             Connection connection = Conexao.getConnection()){
+             Connection connection = Conexao.getConnection()) {
 
             System.out.println("Qual é o ID do vendedor da venda?");
             String id_vendedor = sc.nextLine();
 
             String sql = "SELECT id FROM vendedor WHERE id = ?";
-            try (PreparedStatement consultando_id = connection.prepareStatement(sql)){
-                consultando_id.setString(1,id_vendedor);
+            try (PreparedStatement consultando_id = connection.prepareStatement(sql)) {
+                consultando_id.setString(1, id_vendedor);
 
-                try(ResultSet query = consultando_id.executeQuery()){
+                try (ResultSet query = consultando_id.executeQuery()) {
                     if (query.next()) {
-                        retorno_consulta_vendedor = query.getInt(1);
+                        retorno_vendedor = query.getInt(1);
                     }
                 }
             }
-        } catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-        return retorno__consulta_vendedor;
+        return retorno_vendedor;
     }
 
     public static int consultar_id_produto() {
-        int retorno_consulta_produto = 0;
+        int retorno_produto = 0;
 
         try (Scanner sc = new Scanner(System.in);
              Connection connection = Conexao.getConnection()) {
@@ -95,7 +96,7 @@ public class Vinculos {
 
                 try (ResultSet query = consultando_id.executeQuery()) {
                     if (query.next()) {
-                        retorno_consulta_produto = query.getInt(1);
+                        retorno_produto = query.getInt(1);
                     }
                 }
             } catch (SQLException e) {
@@ -104,32 +105,33 @@ public class Vinculos {
         } catch (SQLException ex) {
             throw new RuntimeException();
         }
-        return retorno_consulta_produto;
+        return retorno_produto;
     }
 
-    public static int consultar_id_venda(){
-        int retorno_consulta_venda = 0;
+    public static int consultar_id_venda() {
+        int retorno_venda = 0;
 
         try (Scanner sc = new Scanner(System.in);
-        Connection connection = Conexao.getConnection()){
+             Connection connection = Conexao.getConnection()) {
 
-        System.out.println("Qual o ID da venda?");
-        int id_venda = sc.nextInt();
+            System.out.println("Qual o ID da venda?");
+            int id_venda = sc.nextInt();
 
-        String sql = "SELECT ID from venda where ID = ?";
-        try(PreparedStatement consultando_id = connection.prepareStatement(sql)){
+            String sql = "SELECT ID from venda where ID = ?";
+            try (PreparedStatement consultando_id = connection.prepareStatement(sql)) {
+                consultando_id.setInt(1, id_venda);
 
-            try(ResultSet query = consultando_id.executeQuery()){
-                if (query.next()){
-                    retorno_consulta_venda = query.getInt(1);
+                try (ResultSet query = consultando_id.executeQuery()) {
+                    if (query.next()) {
+                        retorno_venda = query.getInt(1);
+                    }
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
                 }
             }
-        }  cath (SQLException ex){
-              ex.RuntimeException();
-        } cath (SQLException e){
+        } catch (SQLException e) {
             throw new RuntimeException();
         }
-        }
-        return retorno_consulta_venda;
+        return retorno_venda;
     }
 }
