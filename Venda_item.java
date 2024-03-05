@@ -7,36 +7,22 @@ import java.util.Scanner;
 public class Venda_item {
     public static void main(String[] args) {
     }
+    
+    try (Scanner sc = new Scanner(System.in);
+    Connection connection = Conexao.getConnection()){
 
-    public static int consultar_id_produto() {
-        int retorno_consulta_produto = 0;
+        System.out.println("Qual o ID do produto desta venda?");
+        int id_produto = sc.nextInt();
 
-        try (Scanner sc = new Scanner(System.in);
-             Connection connection = Conexao.getConnection()) {
+        String sql = "SELECT ID from produto where id = ?";
+        try(prepareStatement consultando_id = connection.PreparedStatement(sql)){
+            inserindo.setInt(1,id_produto);
 
-            System.out.println("Qual o ID do item que foi vendido?");
-            int id_item = sc.nextInt();
-
-            String sql = "SELECT ID from produto where id = ?";
-            try (PreparedStatement consultando_id = connection.prepareStatement(sql)) {
-                consultando_id.setInt(1, id_item);
-
-                try (ResultSet query = consultando_id.executeQuery()) {
+            try (ResultSet query = consultando_id.executeQuery()) {
                     if (query.next()) {
                         retorno_consulta_produto = query.getInt(1);
                     }
                 }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        } catch (SQLException ex) {
-            throw new RuntimeException();
         }
-        return retorno_consulta_produto;
-    }
-
-    public static int consultar_vendedor_id_fornecedor(){
-
-      return 0;
     }
 }
