@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-public class Pedido_item {
+public class _item {
     public static void main(String[] args) {
     }
 
