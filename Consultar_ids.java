@@ -113,7 +113,7 @@ public class Vinculos {
         try (Scanner sc = new Scanner(System.in);
         Connection connection = Conexao.getConnection()){
 
-        System.out.println("Qual o ID do item que foi vendido?");
+        System.out.println("Qual o ID da venda?");
         int id_venda = sc.nextInt();
 
         String sql = "SELECT ID from venda where ID = ?";
