@@ -19,12 +19,18 @@ public class Venda {
     }
 
     public static void cadastrar_pedido() {
+        System.out.println("Chamada 1");
         int quantidade_vendida = perguntar_quantidade();
+        System.out.println("Chamada 2");
         int id_produto = Consultar_ids.consultar_id_produto();
+        System.out.println("Chamada 3");
         int preco_produto = consultar_preco(id_produto);
+        System.out.println("Chamada 4");
         int valor_total = (quantidade_vendida * preco_produto);
-        int id_vendedor = Consultar_ids.consultar_id_vendedor();
+        System.out.println("Chamada 5");
         int id_cliente = Consultar_ids.consultar_id_cliente();
+        System.out.println("Chamada 6");
+        int id_vendedor = Consultar_ids.consultar_id_vendedor();
 
         try (Connection connection = Conexao.getConnection()) {
 
