@@ -5,33 +5,62 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Venda {
-   
-   try(Scanner sc = new Scanner(System.in);
-   Connection connection = Conexao.getConnection()){
+    public static void main(String[] args) {
+    cadastrar_pedido();
+    }
+    public static int perguntar_quantidade() {
+        Scanner sc = new Scanner(System.in);
 
-    System.out.println("Qual é o ID do vendedor desta venda?");
-    int resposta1 = sc.nextInt();
-    sc.nextLine();
+        System.out.println("Qual a quantidade vendido do produto?");
+        int quantidade_vendida = sc.nextInt();
+        sc.nextLine();
 
-     int id_vendedor = Vinculos.consultar_id_vendedor(resposta1);
-    
-    System.out.println("Qual é ID do cliente desta venda?");
-    int resposta2 = sc.nextInt();
-    sc.nextLine();
+        return quantidade_vendida;
+    }
 
-    int id_cliente = Vinculos.consultar_id_cliente(resposta2);
+    public static void cadastrar_pedido() {
+        int quantidade_vendida = perguntar_quantidade();
+        int id_produto = Consultar_ids.consultar_id_produto();
+        int preco_produto = consultar_preco(id_produto);
+        int valor_total = (quantidade_vendida * preco_produto);
+        int id_vendedor = Consultar_ids.consultar_id_vendedor();
+        int id_cliente = Consultar_ids.consultar_id_cliente();
 
-  String sql = "INSERT INTO venda (id_cliente,id_vendedor) VALUES (?,?)" ;
-  try(PreparedStatement inserindo = connection.PreparedStatement(sql)){
-    inserindo.setInt(1,id_cliente);
-    inserindo.setInt(2,id,vendedor);
+        try (Connection connection = Conexao.getConnection()) {
 
-    inserindo.executeUpdate();
+            String sql = "INSERT INTO venda (id_cliente,id_vendedor,valor_total) VALUES (?,?)";
+            try (PreparedStatement inserindo = connection.prepareStatement(sql)) {
+                inserindo.setInt(1, id_cliente);
+                inserindo.setInt(2, id_vendedor);
+                inserindo.setInt(3, valor_total);
 
-  } catch (SQLException e){
-    throw new RuntimeException();
-  }catch (SQLException e) {
-            e.printStackTrace();
-   }
-} 
+                inserindo.executeUpdate();
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException();
+        }
+    }
+
+    public static int consultar_preco(int id_produto) {
+        int preco_produto = 0;
+
+        try (Connection connection = Conexao.getConnection()) {
+
+            String sql = "SELECT preco FROM produto where id = ?";
+            try (PreparedStatement consultando_preco = connection.prepareStatement(sql)) {
+                consultando_preco.setInt(1, id_produto);
+
+                ResultSet query = consultando_preco.executeQuery();
+                if (query.next()) {
+                    preco_produto = query.getInt(1);
+                }
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return preco_produto;
+    }
 }
