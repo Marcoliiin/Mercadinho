@@ -6,32 +6,37 @@ import java.util.Scanner;
 
 public class Venda {
     public static void main(String[] args) {
-    cadastrar_pedido();
-    }
-    public static int perguntar_quantidade() {
+
+        int id_produto = 0;
+        int id_cliente = 0;
+        int id_vendedor = 0;
+        int valor_total = 0;
+        int quantidade_vendida = 0;
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("Qual a quantidade vendido do produto?");
-        int quantidade_vendida = sc.nextInt();
-        sc.nextLine();
-
-        return quantidade_vendida;
+        Venda venda = new Venda(id_produto, id_cliente, id_vendedor, quantidade_vendida, valor_total, sc);
     }
 
-    public static void cadastrar_pedido() {
-        System.out.println("Chamada 1");
-        int quantidade_vendida = perguntar_quantidade();
-        System.out.println("Chamada 2");
-        int id_produto = Consultar_ids.consultar_id_produto();
-        System.out.println("Chamada 3");
-        int preco_produto = consultar_preco(id_produto);
-        System.out.println("Chamada 4");
-        int valor_total = (quantidade_vendida * preco_produto);
-        System.out.println("Chamada 5");
-        int id_cliente = Consultar_ids.consultar_id_cliente();
-        System.out.println("Chamada 6");
-        int id_vendedor = Consultar_ids.consultar_id_vendedor();
+    public int id_produto;
+    public int id_cliente;
+    public int id_vendedor;
+    public int valor_total;
+    public int quantidade_vendida;
 
+    public Venda(int id_produto, int id_cliente, int id_vendedor, int valor_total, int quantidade_vendida, Scanner sc) {
+        System.out.println("Qual a quantidade vendida deste produto?");
+        this.quantidade_vendida = sc.nextInt();
+
+        this.id_produto = Consultar_ids.consultar_id_produto();
+        this.id_cliente = Consultar_ids.consultar_id_cliente();
+        this.id_vendedor = Consultar_ids.consultar_id_vendedor();
+        this.valor_total = (this.quantidade_vendida * consultar_preco(this.id_produto));
+
+        cadastrar_pedido(this.id_vendedor, this.id_cliente, this.valor_total);
+    }
+
+
+    public static void cadastrar_pedido(int id_vendedor, int id_cliente, int valor_total) {
         try (Connection connection = Conexao.getConnection()) {
 
             String sql = "INSERT INTO venda (id_cliente,id_vendedor,valor_total) VALUES (?,?)";
