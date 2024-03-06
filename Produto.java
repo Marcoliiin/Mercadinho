@@ -9,7 +9,6 @@ public class Produto {
     double preco = 0;
     int estoque = 0;
     Scanner sc = new Scanner(System.in);
-
  }
 
  public String descricao;
@@ -31,7 +30,7 @@ public class Produto {
 
     public static void cadastrar_produto(String descricao, double preco, int estoque) {
 
-        int id_fornecedor = Vinculos.vinculo_produto_fornecedor();
+        int id_fornecedor = Consultar_ids.consultar_id_fornecedor();
 
         try (Connection connection = Conexao.getConnection()) {
             String sintaxe = "INSERT INTO produto (descricao,preco,estoque,id_fornecedor) VALUES (?,?,?,?)";
