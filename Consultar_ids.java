@@ -38,11 +38,11 @@ public class Consultar_ids {
              Connection connection = Conexao.getConnection()) {
 
             System.out.println("Qual é o ID do cliente da venda?");
-            String id_cliente = sc.nextLine();
+            int id_cliente = 1;/*sc.nextInt();*/
 
             String sql = "SELECT id FROM clientes WHERE id = ?";
             try (PreparedStatement consultando_id = connection.prepareStatement(sql)) {
-                consultando_id.setString(1, id_cliente);
+                consultando_id.setInt(1, id_cliente);
 
                 try (ResultSet query = consultando_id.executeQuery()) {
                     if (query.next()) {
