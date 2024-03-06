@@ -104,6 +104,7 @@ public class Consultar_ids {
         } catch (SQLException ex) {
             throw new RuntimeException();
         }
+        System.out.println("Retorno Produto " + retorno_produto);
         return retorno_produto;
     }
 
