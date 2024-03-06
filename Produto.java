@@ -4,41 +4,36 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Produto {
+ public static void main(String[] args){
+    String descricao = "";
+    double preco = 0;
+    int estoque = 0;
+    Scanner sc = new Scanner(System.in);
 
-    public static void cadastrar_produto() {
-        try (Scanner sc = new Scanner(System.in);
-             Connection connection = Conexao.getConnection()) {
-            System.out.println("Qual é a descrição do produto?");
-            String descricao = sc.nextLine();
+ }
 
+ public String descricao;
+ public double preco = 0;
+ public int estoque = 0;
+
+    public Produto(String descricao,double preco,int estoque,Scanner sc) {
+        System.out.println("Qual é a descrição do produto?");
+        this.descricao    = sc.nextLine();
+    
             System.out.println("Qual o preço deste produto?");
-            double preco = sc.nextDouble();
+            this.preco = sc.nextDouble();
 
             System.out.println("Qual é o estoque deste produto?");
-            int estoque = sc.nextInt();
+             this.estoque = sc.nextInt();
 
-            produto_vinculo(descricao, preco, estoque);
-
-        } catch (SQLException ex) {
-            throw new RuntimeException();
-        }
+            produto_vinculo(this.descricao, this.preco, this.estoque);
     }
 
-    public static void produto_vinculo(String descricao, double preco, int estoque) {
+    public static void cadastrar_produto(String descricao, double preco, int estoque) {
 
         int id_fornecedor = Vinculos.vinculo_produto_fornecedor();
 
         try (Connection connection = Conexao.getConnection()) {
-
-      /*      System.out.println("Qual é a descrição do produto?");
-            String descricao = sc.nextLine();
-
-            System.out.println("Qual o preço deste produto?");
-            double preco = sc.nextDouble();
-
-            System.out.println("Qual é o estoque deste produto?");
-            int estoque = sc.nextInt();
-*/
             String sintaxe = "INSERT INTO produto (descricao,preco,estoque,id_fornecedor) VALUES (?,?,?,?)";
             try (PreparedStatement inserindo = connection.prepareStatement(sintaxe)) {
                 inserindo.setString(1, descricao);
