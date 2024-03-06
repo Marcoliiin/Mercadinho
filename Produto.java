@@ -16,14 +16,14 @@ public class Produto {
  public int estoque = 0;
 
     public Produto(String descricao,double preco,int estoque,Scanner sc) {
-        System.out.println("Qual é a descrição do produto?");
-        this.descricao    = sc.nextLine();
+            System.out.println("Qual é a descrição do produto?");
+            this.descricao    = sc.nextLine();
     
             System.out.println("Qual o preço deste produto?");
             this.preco = sc.nextDouble();
 
             System.out.println("Qual é o estoque deste produto?");
-             this.estoque = sc.nextInt();
+            this.estoque = sc.nextInt();
 
             produto_vinculo(this.descricao, this.preco, this.estoque);
     }
