@@ -5,9 +5,9 @@ import java.util.Scanner;
 
 public class Clientes {
 
-    String nome = "";
-    String sexo = "";
-    String endereco = "";
+    String nome;
+    String sexo;
+    String endereco;
     Scanner sc = new Scanner(System.in);
 
     public Clientes() {
