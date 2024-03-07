@@ -4,20 +4,23 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Fornecedor {
-    public static void main(String[] args) {
+
+    String descricao = "";
+    String contato = "";
+    String endereco = "";
+    Scanner sc = new Scanner(System.in);
+
+    public Fornecedor() {
+        System.out.println("Digite o nome do seu fornecedor: ");
+        this.descricao = sc.nextLine();
+        System.out.println("Digite o contato do seu fornecedor: ");
+        this.contato = sc.nextLine();
+        System.out.println("Digite o endereço do seu fornecedor: ");
+        this.endereco = sc.nextLine();
     }
 
-    public static void criar_fornecedor() {
-        try {
-            Connection connection = Conexao.getConnection();
-
-            Scanner sc = new Scanner(System.in);
-            System.out.println("Digite o nome do seu fornecedor: ");
-            String descricao = sc.nextLine();
-            System.out.println("Digite o contato do seu fornecedor: ");
-            String contato = sc.nextLine();
-            System.out.println("Digite o endereço do seu fornecedor: ");
-            String endereco = sc.nextLine();
+    public static void criar_fornecedor(String descricao, String contato, String endereco) {
+        try (Connection connection = Conexao.getConnection()) {
 
             String sql = "INSERT INTO fornecedor (descricao,contato,endereco) VALUES (?,?,?)";
             try (PreparedStatement inserindo_cliente = connection.prepareStatement(sql)) {
