@@ -30,6 +30,7 @@ public class Venda {
         this.id_cliente = Consultar_ids.consultar_id_cliente();
         this.id_vendedor = Consultar_ids.consultar_id_vendedor();
         this.valor_total = (this.quantidade_vendida * Consultar_caracteristicas.consultar_preco_produto(this.id_produto));
+
         cadastrar_pedido(this.id_vendedor, this.id_cliente, this.valor_total);
     }
 
