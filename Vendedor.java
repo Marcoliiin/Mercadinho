@@ -4,7 +4,7 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Vendedor {
-    String nome = "";
+    String nome;
     Scanner sc = new Scanner(System.in);
 
     public Vendedor() {
