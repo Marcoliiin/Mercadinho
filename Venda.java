@@ -1,6 +1,5 @@
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 
@@ -30,7 +29,7 @@ public class Venda {
         this.id_produto = Consultar_ids.consultar_id_produto();
         this.id_cliente = Consultar_ids.consultar_id_cliente();
         this.id_vendedor = Consultar_ids.consultar_id_vendedor();
-        this.valor_total = (this.quantidade_vendida * consultar_preco(this.id_produto));
+        this.valor_total = (this.quantidade_vendida * Consultar_caracteristicas.consultar_preco_produto(this.id_produto));
         cadastrar_pedido(this.id_vendedor, this.id_cliente, this.valor_total);
     }
 
@@ -50,24 +49,5 @@ public class Venda {
         } catch (SQLException e) {
             throw new RuntimeException();
         }
-    }
-
-    public static int consultar_preco(long id_produto) {
-        int preco_produto = 0;
-
-        try (Connection connection = Conexao.getConnection()) {
-            String sql = "SELECT preco FROM produto where id = ?";
-            try (PreparedStatement consultando_preco = connection.prepareStatement(sql)) {
-                consultando_preco.setLong(1, id_produto);
-
-                ResultSet query = consultando_preco.executeQuery();
-                if (query.next()) {
-                    preco_produto = query.getInt(1);
-                }
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-        return preco_produto;
     }
 }
