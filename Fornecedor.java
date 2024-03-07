@@ -5,9 +5,9 @@ import java.util.Scanner;
 
 public class Fornecedor {
 
-    String descricao = "";
-    String contato = "";
-    String endereco = "";
+    String descricao;
+    String contato;
+    String endereco;
     Scanner sc = new Scanner(System.in);
 
     public Fornecedor() {
@@ -17,6 +17,8 @@ public class Fornecedor {
         this.contato = sc.nextLine();
         System.out.println("Digite o endereço do seu fornecedor: ");
         this.endereco = sc.nextLine();
+
+        criar_fornecedor(descricao,contato,endereco);
     }
 
     public static void criar_fornecedor(String descricao, String contato, String endereco) {
