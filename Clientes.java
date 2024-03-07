@@ -4,20 +4,23 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Clientes {
-    public static void main(String[] args) {
-    }
 
-    public static void criar_cliente() {
+    String nome = "";
+    String sexo = "";
+    String endereco = "";
+    Scanner sc = new Scanner(System.in);
+
+    public Clientes() {
+        System.out.println("Digite o nome do cliente ");
+        this.nome = sc.nextLine();
+        System.out.println("Digite o sexo do cliente \n M para Masculino \n F para Feminino");
+        this.sexo = sc.nextLine();
+        System.out.println("Digite o endereço do cliente: ");
+        this.endereco = sc.nextLine();
+    }
+    public static void criar_cliente(String nome, String sexo, String endereco) {
         try {
             Connection connection = Conexao.getConnection();
-
-            Scanner sc = new Scanner(System.in);
-            System.out.println("Digite o nome do cliente ");
-            String nome = sc.nextLine();
-            System.out.println("Digite o sexo do cliente \n M para Masculino \n F para Feminino");
-            String sexo = sc.nextLine();
-            System.out.println("Digite o endereço do cliente: ");
-            String endereco = sc.nextLine();
 
             String sql = "INSERT INTO clientes (nome,sexo,endereco) VALUES (?,?,?)";
             try (PreparedStatement inserindo_cliente = connection.prepareStatement(sql)) {
