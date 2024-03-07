@@ -4,23 +4,13 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Venda {
-    public static void main(String[] args) {
-
-        long id_produto = 0;
-        long id_cliente = 0;
-        long id_vendedor = 0;
-        int valor_total = 0;
-        int quantidade_vendida = 0;
-        Scanner sc = new Scanner(System.in);
-
-        Venda venda = new Venda(id_produto, id_cliente, id_vendedor, quantidade_vendida, valor_total, sc);
-    }
-
-    public long id_produto;
-    public long id_cliente;
-    public long id_vendedor;
-    public int valor_total;
-    public int quantidade_vendida;
+    
+        public long id_produto;
+        public long id_cliente;
+        public long id_vendedor;
+        public int valor_total;
+        public int quantidade_vendida;
+        public Scanner sc = new Scanner(System.in);
 
     public Venda(long id_produto, long id_cliente, long id_vendedor, int valor_total, int quantidade_vendida, Scanner sc) {
         System.out.println("Qual a quantidade vendida deste produto?");
