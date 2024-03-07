@@ -7,13 +7,18 @@ public class Vendedor {
     public static void main(String[] args) {
     }
 
-    public static void criar_vendedor() {
-        try {
-            Connection connection = Conexao.getConnection();
+    String nome = "";
+    Scanner sc = new Scanner(System.in);
 
-            Scanner sc = new Scanner(System.in);
-            System.out.println("Digite o nome vendedor: ");
-            String nome = sc.nextLine();
+    public Vendedor() {
+        System.out.println("Digite o nome do vendedor:");
+        this.nome = sc.nextLine();
+
+        criar_vendedor(nome);
+    }
+
+    public static void criar_vendedor(String nome) {
+        try (Connection connection = Conexao.getConnection()) {
 
             String sql = "INSERT INTO vendedor (nome) VALUES (?)";
             try (PreparedStatement inserindo_cliente = connection.prepareStatement(sql)) {
