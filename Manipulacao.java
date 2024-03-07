@@ -3,15 +3,15 @@ import java.util.Scanner;
 public class Manipulacao {
     public static void main(String[] args) {
 
-        long id_produto = 0;
-        long id_cliente = 0;
-        long id_vendedor = 0;
-        long id_fornecedor = 0;
-        String descricao = "";
-        double preco = 0;
-        int estoque = 0;
-        int quantidade_vendida = 0;
-        int valor_total = 0;
+        long id_produto;
+        long id_cliente;
+        long id_vendedor;
+        long id_fornecedor;
+        String descricao;
+        double preco;
+        int estoque;
+        int quantidade_vendida;
+        int valor_total;
         Scanner sc = new Scanner(System.in);
 
         System.out.println("O que você deseja fazer?\n[1]Cadastrar algo.\n[2]Consultar algo\n[3]Excluir algo\n[4]Sair");
