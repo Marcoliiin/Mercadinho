@@ -4,20 +4,15 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Produto {
-    public static void main(String[] args){
-        String descricao = "";
-        double preco = 0;
-        int estoque = 0;
-        Scanner sc = new Scanner(System.in);
-    }
 
     public String descricao;
-    public double preco = 0;
-    public int estoque = 0;
+    public double preco;
+    public int estoque;
+    public Scanner sc = new Scanner(System.in);
 
-    public Produto(String descricao,double preco,int estoque,Scanner sc) {
+    public Produto(String descricao, double preco, int estoque, Scanner sc) {
         System.out.println("Qual é a descrição do produto?");
-        this.descricao    = sc.nextLine();
+        this.descricao = sc.nextLine();
 
         System.out.println("Qual o preço deste produto?");
         this.preco = sc.nextDouble();
