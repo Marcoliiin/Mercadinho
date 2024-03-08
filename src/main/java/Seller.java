@@ -3,25 +3,25 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-public class Vendedor {
-    String nome;
+public class Seller {
+    String name;
     Scanner sc = new Scanner(System.in);
 
-    public Vendedor() {
+    public Seller() {
         System.out.println("Digite o nome do vendedor:");
-        this.nome = sc.nextLine();
+        this.name = sc.nextLine();
 
-        criar_vendedor(nome);
+        createSeller(name);
     }
 
-    public static void criar_vendedor(String nome) {
-        try (Connection connection = Conexao.getConnection()) {
+    public static void createSeller(String name) {
+        try (Connection connection = Connecting.getConnection()) {
 
             String sql = "INSERT INTO vendedor (nome) VALUES (?)";
-            try (PreparedStatement inserindo_cliente = connection.prepareStatement(sql)) {
-                inserindo_cliente.setString(1, nome);
+            try (PreparedStatement enteringSeller = connection.prepareStatement(sql)) {
+                enteringSeller.setString(1, name);
 
-                inserindo_cliente.executeUpdate();
+                enteringSeller.executeUpdate();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
