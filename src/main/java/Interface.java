@@ -27,6 +27,7 @@ public class Interface {
                         break;
                     case 2:
                         Sale sale = new Sale(productId, clientId, sellerId, quantitySold, totalValue, sc);
+                        sale.createSaleItem(productId, totalValue);
                         break;
                     case 3:
                         Clients clients = new Clients();
@@ -41,6 +42,8 @@ public class Interface {
                         System.out.println("Esta não é uma opção válida.");
                         break;
                 }
+            case 4:
+                return;
             default:
                 System.out.println("Esta não é uma opção válida.");
                 break;
