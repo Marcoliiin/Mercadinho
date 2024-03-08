@@ -3,21 +3,20 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-public class Venda_item {
+public class VendaItem {
     public static void main(String[] args) {
     }
 
-    long id_produto = 0;
-    long id_cliente = 0;
-    long id_vendedor = 0;
-    int valor_total = 0;
-    int quantidade_vendida = 0;
+    long productId = 0;
+    long clientId = 0;
+    long sellerId = 0;
+    int totalValue = 0;
+    int quantitySold = 0;
     Scanner sc = new Scanner(System.in);
 
       /*  try (Scanner sc = new Scanner(System.in);
-             Connection connection = Conexao.getConnection()) {
+             Connection connection = Connecting.getConnection()) {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }*/
-    }
-
+}
