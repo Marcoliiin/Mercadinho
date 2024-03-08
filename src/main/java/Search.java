@@ -4,18 +4,18 @@ import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.util.Scanner;
 
-public class Pesquisar {
-    public static void pesquisar_clientes() {
+public class Search {
+    public static void searchingClients() {
         try (Scanner sc = new Scanner(System.in)) {
-            Connection connection = Conexao.getConnection();
+            Connection connection = Connecting.getConnection();
 
             System.out.println("Qual é o seu nome?");
-            String nome = sc.nextLine();
+            String name = sc.nextLine();
 
             String sql = "SELECT * FROM clientes where nome = ?";
-            PreparedStatement sintaxe = connection.prepareStatement(sql);
-            sintaxe.setString(1, nome);
-            ResultSet resultado = sintaxe.executeQuery();
+            PreparedStatement searchingClients = connection.prepareStatement(sql);
+            searchingClients.setString(1, name);
+            ResultSet resultado = searchingClients.executeQuery();
 
             if (resultado.next()) {
                 System.out.println("ID do cliente: " + resultado.getInt(1));
