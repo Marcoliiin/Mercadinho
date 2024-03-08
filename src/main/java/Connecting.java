@@ -2,7 +2,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class Conexao {
+public class Connecting {
     private static Connection connection;
 
     // Método para obter a conexão
