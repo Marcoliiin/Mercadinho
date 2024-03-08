@@ -4,14 +4,14 @@ public class Interface {
     public static void main(String[] args) {
 
         long productId = 0;
-        long clientId= 0;
-        long sellerId= 0;
-        long supplierId= 0;
-        String description= "";
+        long clientId = 0;
+        long sellerId = 0;
+        long supplierId = 0;
+        String description = "";
         double price = 0;
         int stock = 0;
-        int quantitySold= 0;
-        int totalValue= 0;
+        int quantitySold = 0;
+        int totalValue = 0;
         Scanner sc = new Scanner(System.in);
 
         System.out.println("O que você deseja fazer?\n[1]Cadastrar algo.\n[2]Consultar algo\n[3]Excluir algo\n[4]Sair");
