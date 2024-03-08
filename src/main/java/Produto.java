@@ -3,41 +3,41 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-public class Produto {
-public static void main(String[] args) {
-    
-}
-    public String descricao;
-    public double preco;
-    public int estoque;
+public class Product {
+    public static void main(String[] args) {
+
+    }
+    public String description;
+    public double price;
+    public int stock;
     public Scanner sc = new Scanner(System.in);
 
-    public Produto(String descricao, double preco, int estoque, Scanner sc) {
+    public Product(String descricao, double preco, int estoque, Scanner sc) {
         System.out.println("Qual é a descrição do produto?");
-        this.descricao = sc.nextLine();
+        this.description = sc.nextLine();
 
         System.out.println("Qual o preço deste produto?");
-        this.preco = sc.nextDouble();
+        this.price = sc.nextDouble();
 
         System.out.println("Qual é o estoque deste produto?");
-        this.estoque = sc.nextInt();
+        this.stock = sc.nextInt();
 
-        cadastrar_produto(this.descricao, this.preco, this.estoque);
+        createProduct(this.description, this.price, this.stock);
     }
 
-    public static void cadastrar_produto(String descricao, double preco, int estoque) {
+    public static void createProduct(String description, double price, int stock) {
 
-        long id_fornecedor = Consultar_ids.consultar_id_fornecedor();
+        long supplierId = ConsultingIds.consultingSupplierId();
 
-        try (Connection connection = Conexao.getConnection()) {
+        try (Connection connection = Connecting.getConnection()) {
             String sintaxe = "INSERT INTO produto (descricao,preco,estoque,id_fornecedor) VALUES (?,?,?,?)";
-            try (PreparedStatement inserindo = connection.prepareStatement(sintaxe)) {
-                inserindo.setString(1, descricao);
-                inserindo.setDouble(2, preco);
-                inserindo.setInt(3, estoque);
-                inserindo.setLong(4, id_fornecedor);
+            try (PreparedStatement enteringProduct = connection.prepareStatement(sintaxe)) {
+                enteringProduct.setString(1, description);
+                enteringProduct.setDouble(2, price);
+                enteringProduct.setInt(3, stock);
+                enteringProduct.setLong(4, supplierId);
 
-                inserindo.executeUpdate();
+                enteringProduct.executeUpdate();
 
             } catch (SQLException ex) {
                 throw new RuntimeException();
