@@ -1,5 +1,6 @@
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 
@@ -21,10 +22,12 @@ public class Venda {
         this.id_vendedor = Consultar_ids.consultar_id_vendedor();
         this.valor_total = (this.quantidade_vendida * Consultar_caracteristicas.consultar_preco_produto(this.id_produto));
 
-        cadastrar_pedido(this.id_vendedor, this.id_cliente, this.valor_total);
+        long id_venda = 0;
+        id_venda = cadastrar_pedido(this.id_vendedor, this.id_cliente, this.valor_total,id_venda);
     }
 
-    public static void cadastrar_pedido(long id_vendedor, long id_cliente, long valor_total) {
+    public static  long cadastrar_pedido(long id_vendedor, long id_cliente, long valor_total, long id_venda) {
+
         try (Connection connection = Conexao.getConnection()) {
             String sql = "INSERT INTO venda (Vid_cliente,id_vendedor,valor_total) VALUES (?,?,?)";
             try (PreparedStatement inserindo = connection.prepareStatement(sql)) {
@@ -34,11 +37,18 @@ public class Venda {
 
                 inserindo.executeUpdate();
 
+
+                ResultSet retorno_id_venda = inserindo.getGeneratedKeys();
+                if (retorno_id_venda.next()) {
+                    id_venda = retorno_id_venda.getLong(1);
+                }
+
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         } catch (SQLException e) {
-            throw new RuntimeException();
-        }
-    }
+            throw new RuntimeException(e);
+        } 
+        return id_venda; 
+    } 
 }
