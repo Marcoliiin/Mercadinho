@@ -22,10 +22,10 @@ public class Seller {
                 enteringSeller.setString(1, name);
 
                 enteringSeller.executeUpdate();
-            } catch (SQLException e) {
-                e.printStackTrace();
+            } catch (SQLException exception) {
+                exception.printStackTrace();
             }
-        } catch (SQLException ex) {
+        } catch (SQLException exception) {
             throw new RuntimeException();
         }
     }
