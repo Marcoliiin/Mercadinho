@@ -4,9 +4,7 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Product {
-    public static void main(String[] args) {
 
-    }
     public String description;
     public double price;
     public int stock;
