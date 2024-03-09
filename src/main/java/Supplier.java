@@ -30,10 +30,10 @@ public class Supplier {
                 enteringSupplier.setString(2, contact);
                 enteringSupplier.setString(3, adress);
                 enteringSupplier.executeUpdate();
-            } catch (SQLException e) {
-                e.printStackTrace();
+            } catch (SQLException exception) {
+                exception.printStackTrace();
             }
-        } catch (SQLException ex) {
+        } catch (SQLException exception) {
             throw new RuntimeException();
         }
     }
