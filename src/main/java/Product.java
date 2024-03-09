@@ -39,12 +39,12 @@ public class Product {
 
                 enteringProduct.executeUpdate();
 
-            } catch (SQLException ex) {
+            } catch (SQLException exception) {
                 throw new RuntimeException();
             }
 
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
         }
     }
 }
