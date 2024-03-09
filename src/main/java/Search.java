@@ -24,8 +24,8 @@ public class Search {
                 System.out.println("Endereço do cliente: " + resultado.getString(4));
                 System.out.println("Data do cadastro: " + resultado.getString(5));
             }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
         }
     }
 }
