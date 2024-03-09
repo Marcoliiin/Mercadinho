@@ -5,19 +5,6 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Sale {
-    public static void main(String[] args) {
-
-        long productId = 0;
-        long clientId = 0;
-        long sellerId = 0;
-        int quantitySold = 0;
-        int totalValue = 0;
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Antes de chamar o consrtuctor: " + quantitySold);
-        Sale sale = new Sale(productId, clientId, sellerId, quantitySold, totalValue, sc);
-        System.out.println("Antes de chamar o createSaleItem " + quantitySold);
-        sale.createSaleItem(productId, totalValue);
-    }
 
     public long productId;
     public long clientId;
@@ -38,20 +25,21 @@ public class Sale {
 
     }
 
-    public long createSale(long sellerId, long clientId, long totalValue) {
+    public long createSale() {
         long saleId = 0;
         try (Connection connection = Connecting.getConnection()) {
             String sql = "INSERT INTO venda (id_cliente,id_vendedor,valor_total) VALUES (?,?,?)";
-            try (PreparedStatement enteringSale = connection.prepareStatement(sql)) {
-                enteringSale.setLong(1, clientId);
-                enteringSale.setLong(2, sellerId);
-                enteringSale.setLong(3, totalValue);
+            try (PreparedStatement enteringSale = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
+                enteringSale.setLong(1, this.clientId);
+                enteringSale.setLong(2, this.sellerId);
+                enteringSale.setLong(3, this.totalValue);
 
                 enteringSale.executeUpdate();
 
-                ResultSet SaleIdReturn = enteringSale.getGeneratedKeys();
-                if (SaleIdReturn.next()) {
-                    saleId = SaleIdReturn.getLong(1);
+                ResultSet saleIdReturn = enteringSale.getGeneratedKeys();
+
+                if (saleIdReturn.next()) {
+                    saleId = saleIdReturn.getLong(1);
                 }
 
             } catch (SQLException e) {
@@ -60,23 +48,26 @@ public class Sale {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+
         return saleId;
     }
 
-    public void createSaleItem(long productId, int totalValue) {
-        long saleId = createSale(sellerId, clientId, totalValue);
-        int productPrice = (totalValue / this.quantitySold);
+    public void createSaleItem() {
+        long saleId = createSale();
+
+        int productPrice = (this.totalValue / this.quantitySold);
 
         try (Connection connection = Connecting.getConnection()) {
-            String insert = "INSERT INTO venda_item (default,id_produto,id_venda,preco_produto,quantidade,valor_total)";
+            String insert = "INSERT INTO venda_item (id_produto,id_venda,preco_produto,quantidade_vendida,valor_total) VALUES (?,?,?,?,?)";
             try (PreparedStatement enteringSaleItem = connection.prepareStatement((insert))) {
-                enteringSaleItem.setLong(1, productId);
+                enteringSaleItem.setLong(1, this.productId);
                 enteringSaleItem.setLong(2, saleId);
                 enteringSaleItem.setInt(3, productPrice);
                 enteringSaleItem.setInt(4, this.quantitySold);
-                enteringSaleItem.setInt(5, totalValue);
+                enteringSaleItem.setInt(5, this.totalValue);
 
                 enteringSaleItem.executeUpdate();
+
             }
         } catch (SQLException exception) {
             exception.printStackTrace();
