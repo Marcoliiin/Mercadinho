@@ -1,136 +1,38 @@
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.ResultSet;
 import java.util.Scanner;
 
-public class ConsultingIds {
-    public static long consultingSupplierId() {
-        long supplierReturn = 0;
-        Scanner sc = new Scanner(System.in);
+public class Clients {
 
-        try (Connection connection = Connecting.getConnection()) {
+    String name;
+    String sex;
+    String adress;
+    Scanner sc = new Scanner(System.in);
 
-            System.out.println("Qual é o ID do fornecedor deste produto?");
-            long supplierId = sc.nextLong();
-
-            String sql = "SELECT id FROM fornecedor WHERE id = ?";
-            try (PreparedStatement consultingId = connection.prepareStatement(sql)) {
-                consultingId.setLong(1, supplierId);
-
-                try (ResultSet query = consultingId.executeQuery()) {
-                    if (query.next()) {
-                        supplierReturn = query.getLong(1);
-                    }
-                }
-            }
-        } catch (SQLException exception) {
-            exception.printStackTrace();
-        }
-
-        return supplierReturn;
+    public Clients() {
+        System.out.println("Digite o nome do cliente: ");
+        this.name = sc.nextLine();
+        System.out.println("Digite o sexo do cliente: \nM para Masculino. \nF para Feminino.");
+        this.sex = sc.nextLine();
+        System.out.println("Digite o endereço do cliente: ");
+        this.adress = sc.nextLine();
     }
+    public static void createClient(String name, String sex, String adress) {
+        try {
+            Connection connection = Connecting.getConnection();
 
-    public static long consultingClientId() {
-        long clientReturn = 0;
-        Scanner sc = new Scanner(System.in);
-        try (Connection connection = Connecting.getConnection()) {
-
-            System.out.println("Qual é o ID do cliente da venda?");
-            long clientId = sc.nextLong();
-
-            String sql = "SELECT id FROM clientes WHERE id = ?";
-            try (PreparedStatement consultingId = connection.prepareStatement(sql)) {
-                consultingId.setLong(1, clientId);
-
-                try (ResultSet query = consultingId.executeQuery()) {
-                    if (query.next()) {
-                        clientReturn = query.getLong(1);
-                    }
-                }
-            }
-        } catch (SQLException exception) {
-            exception.printStackTrace();
-        }
-        return clientReturn;
-    }
-
-    public static long consultingSellerId() {
-        long sellerReturn = 0;
-        Scanner sc = new Scanner(System.in);
-
-        try (Connection connection = Connecting.getConnection()) {
-
-            System.out.println("Qual é o ID do vendedor da venda?");
-            long sellerId = sc.nextLong();
-
-            String sql = "SELECT id FROM vendedor WHERE id = ?";
-            try (PreparedStatement consultingId = connection.prepareStatement(sql)) {
-                consultingId.setLong(1, sellerId);
-
-                try (ResultSet query = consultingId.executeQuery()) {
-                    if (query.next()) {
-                        sellerReturn = query.getLong(1);
-                    }
-                }
-            }
-        } catch (SQLException exception) {
-            exception.printStackTrace();
-        }
-        return sellerReturn;
-    }
-
-    public static long consultingProductId() {
-        long productReturn = 0;
-        Scanner sc = new Scanner(System.in);
-
-        try (Connection connection = Connecting.getConnection()) {
-
-            System.out.println("Qual o ID do item que foi vendido?");
-            long itenId = sc.nextLong();
-
-            String sql = "SELECT id from produto where id = ?";
-            try (PreparedStatement consultingId = connection.prepareStatement(sql)) {
-                consultingId.setLong(1, itenId);
-
-                try (ResultSet query = consultingId.executeQuery()) {
-                    if (query.next()) {
-                        productReturn = query.getLong(1);
-                    }
-                }
+            String sql = "INSERT INTO clientes (name,sex,adress) VALUES (?,?,?)";
+            try (PreparedStatement enteringClient = connection.prepareStatement(sql)) {
+                enteringClient.setString(1, name);
+                enteringClient.setString(2, sex);
+                enteringClient.setString(3, adress);
+                enteringClient.executeUpdate();
             } catch (SQLException exception) {
                 exception.printStackTrace();
             }
         } catch (SQLException exception) {
             throw new RuntimeException();
         }
-        return productReturn;
-    }
-
-    public static long consultingSaleId() {
-        long saleReturn = 0;
-        Scanner sc = new Scanner(System.in);
-
-        try (Connection connection = Connecting.getConnection()) {
-
-            System.out.println("Qual o ID da venda?");
-            long saleId = sc.nextLong();
-
-            String sql = "SELECT ID from venda where ID = ?";
-            try (PreparedStatement consultingId = connection.prepareStatement(sql)) {
-                consultingId.setLong(1, saleId);
-
-                try (ResultSet query = consultingId.executeQuery()) {
-                    if (query.next()) {
-                        saleReturn = query.getLong(1);
-                    }
-                } catch (SQLException exception) {
-                    exception.printStackTrace();
-                }
-            }
-        } catch (SQLException exception) {
-            throw new RuntimeException();
-        }
-        return saleReturn;
     }
 }
