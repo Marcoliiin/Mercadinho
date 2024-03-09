@@ -46,6 +46,7 @@ public class Interface {
                         System.out.println("Esta não é uma opção válida.");
                         break;
                 }
+                break;
             case 2:
                 System.out.println("O que você deseja consultar?\n[1]Produto.\n[2]Pedido.");
                 System.out.println("[3]Cliente.\n[4]Fornecedor.\n[5]Vendedor.");
@@ -69,6 +70,7 @@ public class Interface {
                         System.out.println("Esta não é uma opção válida.");
                         break;
                 }
+                break;
             case 4:
                 return;
             default:
