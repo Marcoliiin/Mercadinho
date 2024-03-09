@@ -17,8 +17,8 @@ public class ConsultingCharacteristics {
                     productPrice = query.getInt(1);
                 }
             }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
         }
         return productPrice;
     }
