@@ -14,13 +14,17 @@ public class Interface {
         int totalValue = 0;
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("O que você deseja fazer?\n[1]Cadastrar algo.\n[2]Consultar algo\n[3]Excluir algo\n[4]Sair");
+        System.out.println("O que você deseja fazer?\n[1]Cadastrar algo.\n[2]Consultar algo\n[3]Excluir algo.\n[4]Sair.");
         int choise = sc.nextInt();
+        sc.nextLine();
+
         switch (choise) {
             case 1:
-                System.out.println("O que vocẽ deseja cadastrar?\n[1]Produtos\n[2]Pedido");
-                System.out.println("[3]Cliente\n[4]Fornecedor\n[5]Vendedor");
+                System.out.println("O que vocẽ deseja cadastrar?\n[1]Produto.\n[2]Pedido.");
+                System.out.println("[3]Cliente.\n[4]Fornecedor.\n[5]Vendedor.");
                 choise = sc.nextInt();
+                sc.nextLine();
+
                 switch (choise) {
                     case 1:
                         Product product = new Product(description, price, stock, sc);
