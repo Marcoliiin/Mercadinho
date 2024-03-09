@@ -16,9 +16,11 @@ public class Product {
 
         System.out.println("Qual o preço deste produto?");
         this.price = sc.nextDouble();
+        sc.nextLine();
 
         System.out.println("Qual é o estoque deste produto?");
         this.stock = sc.nextInt();
+        sc.nextLine();
 
         createProduct(this.description, this.price, this.stock);
     }
