@@ -28,10 +28,10 @@ public class Clients {
                 enteringClient.setString(2, sex);
                 enteringClient.setString(3, adress);
                 enteringClient.executeUpdate();
-            } catch (SQLException e) {
-                e.printStackTrace();
+            } catch (SQLException exception) {
+                exception.printStackTrace();
             }
-        } catch (SQLException ex) {
+        } catch (SQLException exception) {
             throw new RuntimeException();
         }
     }
