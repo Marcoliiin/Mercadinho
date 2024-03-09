@@ -12,11 +12,11 @@ public class ConsultingIds {
         try (Connection connection = Connecting.getConnection()) {
 
             System.out.println("Qual é o ID do fornecedor deste produto?");
-            long supplier_id = sc.nextLong();
+            long supplierId = sc.nextLong();
 
             String sql = "SELECT id FROM fornecedor WHERE id = ?";
             try (PreparedStatement consultingId = connection.prepareStatement(sql)) {
-                consultingId.setLong(1, supplier_id);
+                consultingId.setLong(1, supplierId);
 
                 try (ResultSet query = consultingId.executeQuery()) {
                     if (query.next()) {
@@ -89,7 +89,7 @@ public class ConsultingIds {
             System.out.println("Qual o ID do item que foi vendido?");
             long itenId = sc.nextLong();
 
-            String sql = "SELECT ID from produto where id = ?";
+            String sql = "SELECT id from produto where id = ?";
             try (PreparedStatement consultingId = connection.prepareStatement(sql)) {
                 consultingId.setLong(1, itenId);
 
