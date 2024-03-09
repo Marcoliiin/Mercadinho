@@ -42,11 +42,11 @@ public class Sale {
                     saleId = saleIdReturn.getLong(1);
                 }
 
-            } catch (SQLException e) {
-                e.printStackTrace();
+            } catch (SQLException exception) {
+                exception.printStackTrace();
             }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+        } catch (SQLException exception) {
+            throw new RuntimeException();
         }
 
         return saleId;
