@@ -16,6 +16,7 @@ public class Sale {
     public Sale(long productId, long clientId, long sellerId, int totalValue, int quantitySold, Scanner sc) {
         System.out.println("Qual a quantidade vendida deste produto?");
         quantitySold = sc.nextInt();
+        sc.nextLine();
 
         this.quantitySold = quantitySold;
         this.productId = ConsultingIds.consultingProductId();
