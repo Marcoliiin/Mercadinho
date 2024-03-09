@@ -19,7 +19,7 @@ public class Interface {
         switch (choise) {
             case 1:
                 System.out.println("O que vocẽ deseja cadastrar?\n[1]Produtos\n[2]Pedido");
-                System.out.println("[3]Cliente\n[4]Fornecedor[5]Vendedor");
+                System.out.println("[3]Cliente\n[4]Fornecedor\n[5]Vendedor");
                 choise = sc.nextInt();
                 switch (choise) {
                     case 1:
@@ -27,7 +27,7 @@ public class Interface {
                         break;
                     case 2:
                         Sale sale = new Sale(productId, clientId, sellerId, quantitySold, totalValue, sc);
-                        sale.createSaleItem(productId, totalValue);
+                        sale.createSaleItem();
                         break;
                     case 3:
                         Clients clients = new Clients();
