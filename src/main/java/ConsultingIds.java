@@ -24,8 +24,8 @@ public class ConsultingIds {
                     }
                 }
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
         }
 
         return supplierReturn;
@@ -49,8 +49,8 @@ public class ConsultingIds {
                     }
                 }
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
         }
         return clientReturn;
     }
@@ -74,8 +74,8 @@ public class ConsultingIds {
                     }
                 }
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
         }
         return sellerReturn;
     }
@@ -98,16 +98,16 @@ public class ConsultingIds {
                         productReturn = query.getLong(1);
                     }
                 }
-            } catch (SQLException e) {
-                e.printStackTrace();
+            } catch (SQLException exception) {
+                exception.printStackTrace();
             }
-        } catch (SQLException ex) {
+        } catch (SQLException exception) {
             throw new RuntimeException();
         }
         return productReturn;
     }
 
-    public static long consultingSale() {
+    public static long consultingSaleId() {
         long saleReturn = 0;
         Scanner sc = new Scanner(System.in);
 
@@ -124,11 +124,11 @@ public class ConsultingIds {
                     if (query.next()) {
                         saleReturn = query.getLong(1);
                     }
-                } catch (SQLException ex) {
-                    ex.printStackTrace();
+                } catch (SQLException exception) {
+                    exception.printStackTrace();
                 }
             }
-        } catch (SQLException e) {
+        } catch (SQLException exception) {
             throw new RuntimeException();
         }
         return saleReturn;
