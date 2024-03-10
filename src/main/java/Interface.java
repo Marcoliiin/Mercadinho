@@ -58,6 +58,7 @@ public class Interface {
                         Search.searchingProduct();
                         break;
                     case 2:
+                        Search.searchingSale();
                         break;
                     case 3:
                         Search.searchingClient();
