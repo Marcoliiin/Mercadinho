@@ -14,7 +14,7 @@ public class Interface {
         int totalValue = 0;
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("O que você deseja fazer?\n[1]Cadastrar algo.\n[2]Consultar algo.\n[3]Excluir algo.\n[4]Sair.");
+        System.out.println("O que você deseja fazer?\n[1]Cadastrar algo.\n[2]Consultar algo.\n[3]Editar algo.\n[4]Excluir algo.\n[5]Sair.");
         int choise = sc.nextInt();
         sc.nextLine();
 
@@ -64,15 +64,21 @@ public class Interface {
                         Search.searchingClient();
                         break;
                     case 4:
+                        Search.searchingSupplier();
                         break;
                     case 5:
+                        Search.searchingSeller();
                         break;
                     default:
                         System.out.println("Esta não é uma opção válida.");
                         break;
                 }
                 break;
-            case 4:
+            case 3: //caso o usuário queira editar algo
+                break;
+            case 4://caso o usuário queira excluir algo
+                break;
+            case 5:
                 return;
             default:
                 System.out.println("Esta não é uma opção válida.");
