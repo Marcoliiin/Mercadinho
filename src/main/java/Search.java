@@ -1,3 +1,4 @@
+import javax.sound.midi.Soundbank;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -87,5 +88,62 @@ public class Search {
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
+    }
+
+    public static void searchingSupplier() {
+        Scanner sc = new Scanner(System.in);
+        try {
+            Connection connection = Connecting.getConnection();
+
+            System.out.println("Qual a descrição do fornecedor?");
+            String descricao = sc.nextLine();
+
+            String sql = "SELECT * FROM fornecedor WHERE UPPER(DESCRICAO) = UPPER(?)";
+            PreparedStatement searchingSupplier = connection.prepareStatement(sql);
+            searchingSupplier.setString(1, descricao);
+            ResultSet resultSearch = searchingSupplier.executeQuery();
+
+            if (resultSearch.next()) {
+                System.out.println("ID do fornecedor: " + resultSearch.getLong(1));
+                System.out.println("Descrição do fornecedor: " + resultSearch.getString(2));
+                System.out.println("Contato do fornecedor: " + resultSearch.getString(3));
+                System.out.println("Endereço do fornecedor: " + resultSearch.getString(4));
+                System.out.println("Horário do cadastro do fornecedor: " + resultSearch.getInt(5));
+            } else {
+                System.out.println("Não foi possível encontrar um fornecedor com esta descrição.");
+            }
+
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+    }
+
+    public static void searchingSeller() {
+        Scanner sc = new Scanner(System.in);
+        try {
+            Connection connection = Connecting.getConnection();
+
+            System.out.println("Qual é o nome do vendedor?");
+            String nome = sc.nextLine();
+
+            String sql = "SELECT * FROM vendedor WHERE UPPER(nome) = UPPER(?)";
+            PreparedStatement searchingSeller = connection.prepareStatement(sql);
+            searchingSeller.setString(1, nome);
+            ResultSet resultSearch = searchingSeller.executeQuery();
+
+            if (resultSearch.next()) {
+                System.out.println("ID do vendedor: " + resultSearch.getLong(1));
+                System.out.println("Nome do vendedor: " + resultSearch.getString(2));
+                System.out.println("Número de vendas do vendedor: " + resultSearch.getInt(3));
+                System.out.println("Total do valor de suas vendas: " + resultSearch.getInt(4));
+                System.out.println("Horário do registro do vendedor: " + resultSearch.getInt(5));
+            } else {
+                System.out.println("Não foi possível encontrar um vendedor com este nome.");
+            }
+
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+
     }
 }
