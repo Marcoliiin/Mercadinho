@@ -60,4 +60,32 @@ public class Search {
             exception.printStackTrace();
         }
     }
+
+    public static void searchingSale() {
+        Scanner sc = new Scanner(System.in);
+        try {
+            Connection connection = Connecting.getConnection();
+
+            System.out.println("Qual é o ID do seu pedido?");
+            long saleId = sc.nextLong();
+            sc.nextLine();
+
+            String sql = "SELECT * FROM venda WHERE id = ?";
+            PreparedStatement searchingSale = connection.prepareStatement(sql);
+            searchingSale.setLong(1, saleId);
+            ResultSet resultSearch = searchingSale.executeQuery();
+
+            if (resultSearch.next()) {
+                System.out.println("ID da venda: " + resultSearch.getLong(1));
+                System.out.println("Valor total da venda: " + resultSearch.getInt(2));
+                System.out.println("ID do cliente da venda: " + resultSearch.getLong(3));
+                System.out.println("ID do vendedor da venda: " + resultSearch.getLong(4));
+                System.out.println("Horário do cadastro da venda: " + resultSearch.getInt(5));
+            } else {
+                System.out.println("Não foi possível encontrar nenhuma venda com este ID.");
+            }
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+    }
 }
