@@ -13,7 +13,7 @@ public class Deleting {
  public static void deletingEntity(){
     int entityId = 0;
     String table = "";
-
+   System.out.println("CUIDADO!!!\n A exclusão de entidades NÃO PODE ser revertida!!!");
   System.out.println("Qual é a tabela do produto que você deseja excluir?");
   this.table = sc.nextString(); 
 
@@ -27,8 +27,18 @@ public class Deleting {
     try(PreparedStatement deletingEntity = connection.preparedStatement(sql)) {
         deletingEntity.setInt(1,this.id);
 
-        deletingEntity.executeUpdate(sql);
-        
+ System.out.println("ATENÇÃO!!!\n Você realmente quer realizar a exclusão desta entidade?\n[1]Sim\n[2]Não");
+ String choise = sc.nextLine();
+
+ switch(choise){
+    case 1: 
+    deletingEntity.executeUpdate(sql);
+    break;
+    case 2:
+        return;
+ }
+
+
     }catch (SQLException exception){
     exception.printStackTrace();
 
