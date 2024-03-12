@@ -18,12 +18,12 @@ public class Deleting {
         switch (this.table) {
             case "venda":
             case "venda_item":
-            case "conta":
+            case "caixa":
                 System.out.println("Não é possível realizar exclusões nesta tabela!!!");
                 break;
 
             case "vendedor":
-            case "cliente":
+            case "clientes":
             case "produto":
             case "fornecedor":
                 System.out.println("Qual é o ID desta entidade que você quer deletar?");
