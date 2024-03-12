@@ -76,7 +76,8 @@ public class Interface {
                 break;
             case 3: //caso o usuário queira editar algo
                 break;
-            case 4://caso o usuário queira excluir algo
+            case 4:
+                  Deleting.deletingEntity();
                 break;
             case 5:
                 return;
