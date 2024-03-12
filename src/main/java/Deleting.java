@@ -9,19 +9,36 @@ public class Deleting {
     private String table;
     Scanner sc = new Scanner(System.in);
 
-    public Deleting(){
+    public Deleting() {
 
         System.out.println("CUIDADO!!!\nA exclusão de entidades NÃO PODE ser revertida!!!");
         System.out.println("Qual é a tabela do produto que você deseja excluir?");
         this.table = sc.nextLine();
 
-        System.out.println("Qual é o ID da entidade que você quer deletar?");
-        this.entityId = sc.nextInt();
+        switch (this.table) {
+            case "venda":
+            case "venda_item":
+            case "conta":
+                System.out.println("Não é possível realizar exclusões nesta tabela!!!");
+                break;
 
-        deletingEntity();
+            case "vendedor":
+            case "cliente":
+            case "produto":
+            case "fornecedor":
+                System.out.println("Qual é o ID desta entidade que você quer deletar?");
+                this.entityId = sc.nextInt();
+
+                deletingEntity();
+                break;
+
+            default:
+                System.out.println("Está tabela não existe!!!");
+                break;
+        }
     }
 
-    public  void deletingEntity() {
+    public void deletingEntity() {
         try {
             Connection connection = Connecting.getConnection();
 
