@@ -74,4 +74,13 @@ public class Sale {
             exception.printStackTrace();
         }
     }
+
+    public void reduceStock() {
+
+    }
+
+    public void sellerSale() {
+
+    }
+    
 }
