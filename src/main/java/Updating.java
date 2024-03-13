@@ -14,10 +14,13 @@ public class Updating {
     Scanner sc = new Scanner(System.in);
 
     public Updating() {
+
+        int columnType = 0;
+
         System.out.println("Qual tabela você quer atualizar?");
         this.tableName = sc.nextLine();
 
-        System.out.println("Qual informação você quer atualizar?");
+        System.out.println("Qual coluna você quer atualizar?");
         this.columnName = sc.nextLine();
 
         System.out.println("Qual o ID da entidade que você quer atualizar?");
@@ -26,12 +29,13 @@ public class Updating {
 
         System.out.println("Escreva o que você quer inserir:");
         this.entityValue = sc.nextLine();
-          
-     
-        //esse método foi criado para definir se a coluna é uma string(12) ou um integer(4)
+
+        updatingEntity(columnType);
     }
 
     public int gettingColumnType() {
+        int columnType = 0;
+
         try {
             Connection connection = Connecting.getConnection();
 
@@ -43,7 +47,6 @@ public class Updating {
                 if (query.next()) {
                     ResultSetMetaData metadata = select.getMetaData();
                     columnType = metadata.getColumnType(1);
-                    System.out.println("Tipo da coluna: " + columnType);
                 }
 
             } catch (SQLException exception) {
@@ -57,25 +60,26 @@ public class Updating {
 
     public void updatingEntity(int columnType) {
         String entityValue = this.entityValue;
-        int columnType = gettingColumnType();
+        columnType = gettingColumnType();
 
         try {
             Connection connection = Connecting.getConnection();
 
-            String sql = "UPDATE " + columnName + " FROM " + tableName + " WHERE ID = " + this.entityId;
-             try (PreparedStatement updatingEntity = connection.prepareStatement(sintaxe)) {
-             if (columnType == 12){
-                
-                updatingEntity.executeUpdate;
-             }else {
-                int(columnType);
-                updatingEntity.executeUpdate;
-             }
+            String sql = "UPDATE " + this.tableName + " SET " + this.columnName + " = '" + entityValue + "' WHERE ID = " + this.entityId;
+            try (PreparedStatement updatingEntity = connection.prepareStatement(sql)) {
+                if (columnType == 12) {
+                    updatingEntity.executeUpdate();
+                } else {
 
+                    int intEntityValue = Integer.parseInt(entityValue);
+                    updatingEntity.executeUpdate();
+                }
+            } catch (SQLException exception) {
+                exception.printStackTrace();
+            }
         } catch (SQLException exception) {
             exception.printStackTrace();
+
         }
     }
-
-}
 }
