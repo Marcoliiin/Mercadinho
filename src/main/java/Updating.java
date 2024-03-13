@@ -26,15 +26,12 @@ public class Updating {
 
         System.out.println("Escreva o que você quer inserir:");
         this.entityValue = sc.nextLine();
-
-        gettingColumnType();
-
+          
+     
         //esse método foi criado para definir se a coluna é uma string(12) ou um integer(4)
     }
 
     public int gettingColumnType() {
-        int columnType = 0;
-
         try {
             Connection connection = Connecting.getConnection();
 
@@ -58,15 +55,27 @@ public class Updating {
         return columnType;
     }
 
-    public void updatingEntity() {
+    public void updatingEntity(int columnType) {
+        String entityValue = this.entityValue;
+        int columnType = gettingColumnType();
 
         try {
             Connection connection = Connecting.getConnection();
 
             String sql = "UPDATE " + columnName + " FROM " + tableName + " WHERE ID = " + this.entityId;
+             try (PreparedStatement updatingEntity = connection.prepareStatement(sintaxe)) {
+             if (columnType == 12){
+                
+                updatingEntity.executeUpdate;
+             }else {
+                int(columnType);
+                updatingEntity.executeUpdate;
+             }
 
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
     }
+
+}
 }
