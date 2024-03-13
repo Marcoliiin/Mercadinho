@@ -6,7 +6,6 @@ public class Interface {
         long productId = 0;
         long clientId = 0;
         long sellerId = 0;
-        long supplierId = 0;
         String description = "";
         double price = 0;
         int stock = 0;
@@ -74,10 +73,11 @@ public class Interface {
                         break;
                 }
                 break;
-            case 3: //caso o usuário queira editar algo
+            case 3: 
+                Updating updating = new Updating();
                 break;
             case 4:
-                  Deleting.deletingEntity();
+                Deleting deleting = new Deleting();
                 break;
             case 5:
                 return;
