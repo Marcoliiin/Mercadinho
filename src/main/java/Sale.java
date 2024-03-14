@@ -44,10 +44,12 @@ public class Sale {
                 }
 
             } catch (SQLException exception) {
+                exception.getMessage();
                 exception.printStackTrace();
             }
         } catch (SQLException exception) {
-            throw new RuntimeException();
+            exception.getMessage();
+            exception.printStackTrace();
         }
 
         return saleId;
@@ -69,8 +71,12 @@ public class Sale {
 
                 enteringSaleItem.executeUpdate();
 
+            } catch (SQLException exception) {
+                exception.getMessage();
+                exception.printStackTrace();
             }
         } catch (SQLException exception) {
+            exception.getMessage();
             exception.printStackTrace();
         }
     }
@@ -82,5 +88,5 @@ public class Sale {
     public void sellerSale() {
 
     }
-    
+
 }
