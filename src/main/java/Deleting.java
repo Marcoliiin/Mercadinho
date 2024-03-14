@@ -6,8 +6,8 @@ import java.util.Scanner;
 public class Deleting {
 
     private int entityId;
-    private String table;
-    Scanner sc = new Scanner(System.in);
+    private final String table;
+    private final Scanner sc = new Scanner(System.in);
 
     public Deleting() {
 
@@ -47,9 +47,9 @@ public class Deleting {
                 deletingEntity.setInt(1, this.entityId);
 
                 System.out.println("ATENÇÃO!!!\nVocê realmente quer realizar a exclusão desta entidade?\n[1]Sim\n[2]Não");
-                int choise = sc.nextInt();
+                int choice = sc.nextInt();
 
-                switch (choise) {
+                switch (choice) {
                     case 1:
                         deletingEntity.executeUpdate();
                         break;
@@ -57,11 +57,11 @@ public class Deleting {
                         return;
                 }
             } catch (SQLException exception) {
-                exception.getMessage();
+                System.err.println("Erro ao deletar a entidade " + this.table + " do banco: " + exception.getMessage());
                 exception.printStackTrace();
             }
         } catch (SQLException exception) {
-            exception.getMessage();
+            System.err.println("Erro ao se conectar ao banco: " + exception.getMessage());
             exception.printStackTrace();
         }
     }
