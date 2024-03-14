@@ -17,11 +17,11 @@ public class ConsultingCharacteristics {
                     productPrice = query.getInt(1);
                 }
             } catch (SQLException exception) {
-                exception.getMessage();
+                System.err.println("Erro consultar o preco do produto: " + exception.getMessage());
                 exception.printStackTrace();
             }
         } catch (SQLException exception) {
-            exception.getMessage();
+            System.err.println("Erro ao se conectar ao banco: " + exception.getMessage());
             exception.printStackTrace();
         }
         return productPrice;
