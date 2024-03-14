@@ -11,7 +11,7 @@ public class Updating {
     private final String columnName;
     private final String entityValue;
     private int entityId;
-    Scanner sc = new Scanner(System.in);
+    private final Scanner sc = new Scanner(System.in);
 
     public Updating() {
 
@@ -50,11 +50,11 @@ public class Updating {
                 }
 
             } catch (SQLException exception) {
-                exception.getMessage();
+                System.err.println("Erro ao pegar o tipo da coluna: " + exception.getMessage());
                 exception.printStackTrace();
             }
         } catch (SQLException exception) {
-            exception.getMessage();
+            System.err.println("Erro ao se conectar ao banco: " + exception.getMessage());
             exception.printStackTrace();
         }
         return columnType;
@@ -77,11 +77,11 @@ public class Updating {
                     updatingEntity.executeUpdate();
                 }
             } catch (SQLException exception) {
-                exception.getMessage();
+                System.err.println("Erro ao atualizar a entidade + " + exception.getMessage());
                 exception.printStackTrace();
             }
         } catch (SQLException exception) {
-            exception.getMessage();
+            System.err.println("Erro ao se conectar ao banco: " + exception.getMessage());
             exception.printStackTrace();
         }
     }
