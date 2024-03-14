@@ -5,10 +5,10 @@ import java.util.Scanner;
 
 public class Product {
 
-    public String description;
-    public double price;
-    public int stock;
-    public Scanner sc = new Scanner(System.in);
+    private final String description;
+    private final double price;
+    private final int stock;
+    private final Scanner sc = new Scanner(System.in);
 
     public Product(String descricao, double preco, int estoque, Scanner sc) {
         System.out.println("Qual é a descrição do produto?");
@@ -40,12 +40,12 @@ public class Product {
                 enteringProduct.executeUpdate();
 
             } catch (SQLException exception) {
-                exception.getMessage();
+                System.err.println("Erro ao criar o produto; " + exception.getMessage());
                 exception.printStackTrace();
             }
 
         } catch (SQLException exception) {
-            exception.getMessage();
+            System.err.println("Erro ao se conectar ao banco: " + exception.getMessage());
             exception.printStackTrace();
         }
     }
