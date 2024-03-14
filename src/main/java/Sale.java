@@ -101,6 +101,7 @@ public class Sale {
 
     public void sellerSale() {
         try (Connection connection = Connecting.getConnection()) {
+
             String sql = "UPDATE vendedor SET num_vendas = num_vendas + 1, valor_vendas = valor_vendas + " + this.totalValue + " WHERE ID = " + this.sellerId;
             try (PreparedStatement update = connection.prepareStatement(sql)) {
                 update.executeUpdate();
