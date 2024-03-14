@@ -23,15 +23,15 @@ public class ConsultingIds {
                         supplierReturn = query.getLong(1);
                     }
                 } catch (SQLException exception) {
-                    exception.getMessage();
+                    System.err.println("Erro ao pegar o resultado da query: " + exception.getMessage());
                     exception.printStackTrace();
                 }
             } catch (SQLException exception) {
-                exception.getMessage();
+                System.err.println("Erro ao consultar o ID: " + exception.getMessage());
                 exception.printStackTrace();
             }
         } catch (SQLException exception) {
-            exception.getMessage();
+            System.err.println("Erro ao se conectar ao banco: " + exception.getMessage());
             exception.printStackTrace();
         }
 
@@ -56,15 +56,15 @@ public class ConsultingIds {
                     }
 
                 } catch (SQLException exception) {
-                    exception.getMessage();
+                    System.err.println("Erro ao pegar o resultado da query: " + exception.getMessage());
                     exception.printStackTrace();
                 }
             } catch (SQLException exception) {
-                exception.getMessage();
+                System.err.println("Erro ao consultar o ID: " + exception.getMessage());
                 exception.printStackTrace();
             }
         } catch (SQLException exception) {
-            exception.getMessage();
+            System.err.println("Erro ao se conectar ao banco: " + exception.getMessage());
             exception.printStackTrace();
         }
         return clientReturn;
@@ -88,15 +88,15 @@ public class ConsultingIds {
                         sellerReturn = query.getLong(1);
                     }
                 } catch (SQLException exception) {
-                    exception.getMessage();
+                    System.err.println("Erro ao pegar o resultado da query: " + exception.getMessage());
                     exception.printStackTrace();
                 }
             } catch (SQLException exception) {
-                exception.getMessage();
+                System.err.println("Erro ao consultar o ID: " + exception.getMessage());
                 exception.printStackTrace();
             }
         } catch (SQLException exception) {
-            exception.getMessage();
+            System.err.println("Erro ao se conectar ao banco: " + exception.getMessage());
             exception.printStackTrace();
         }
         return sellerReturn;
@@ -120,15 +120,15 @@ public class ConsultingIds {
                         productReturn = query.getLong(1);
                     }
                 } catch (SQLException exception) {
-                    exception.getMessage();
+                    System.err.println("Erro ao pegar o resultado da query: " + exception.getMessage());
                     exception.printStackTrace();
                 }
             } catch (SQLException exception) {
-                exception.getMessage();
+                System.err.println("Erro ao consultar o ID: " + exception.getMessage());
                 exception.printStackTrace();
             }
         } catch (SQLException exception) {
-            exception.getMessage();
+            System.err.println("Erro ao se conectar ao banco: " + exception.getMessage());
             exception.printStackTrace();
         }
         return productReturn;
@@ -152,15 +152,15 @@ public class ConsultingIds {
                         saleReturn = query.getLong(1);
                     }
                 } catch (SQLException exception) {
-                    exception.getMessage();
+                    System.err.println("Erro ao pegar o resultado da query: " + exception.getMessage());
                     exception.printStackTrace();
                 }
             } catch (SQLException exception) {
-                exception.getMessage();
+                System.err.println("Erro ao consultar o ID: " + exception.getMessage());
                 exception.printStackTrace();
             }
         } catch (SQLException exception) {
-            exception.getMessage();
+            System.err.println("Erro ao se conectar ao banco: " + exception.getMessage());
             exception.printStackTrace();
         }
         return saleReturn;
