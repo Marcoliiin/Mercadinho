@@ -18,7 +18,7 @@ public class Supplier {
         System.out.println("Digite o endereço do seu fornecedor: ");
         this.adress = sc.nextLine();
 
-        createSupplier(description,contact,adress);
+        createSupplier(description, contact, adress);
     }
 
     public static void createSupplier(String description, String contact, String adress) {
@@ -31,10 +31,12 @@ public class Supplier {
                 enteringSupplier.setString(3, adress);
                 enteringSupplier.executeUpdate();
             } catch (SQLException exception) {
+                exception.getMessage();
                 exception.printStackTrace();
             }
         } catch (SQLException exception) {
-            throw new RuntimeException();
+            exception.getMessage();
+            exception.printStackTrace();
         }
     }
 }
