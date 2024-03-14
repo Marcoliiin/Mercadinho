@@ -5,10 +5,10 @@ import java.util.Scanner;
 
 public class Clients {
 
-    String name;
-    String sex;
-    String adress;
-    Scanner sc = new Scanner(System.in);
+    private final String name;
+    private final String sex;
+    private final String adress;
+    private final Scanner sc = new Scanner(System.in);
 
     public Clients() {
         System.out.println("Digite o nome do cliente: ");
@@ -30,11 +30,11 @@ public class Clients {
                 enteringClient.setString(3, adress);
                 enteringClient.executeUpdate();
             } catch (SQLException exception) {
-                exception.getMessage();
+                System.err.println("Erro ao cadastrar o cliente: " + exception.getMessage());
                 exception.printStackTrace();
             }
         } catch (SQLException exception) {
-            exception.getMessage();
+            System.err.println("Erro ao se conectar ao banco: " + exception.getMessage());
             exception.printStackTrace();
         }
     }
