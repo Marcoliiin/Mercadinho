@@ -28,6 +28,7 @@ public class Search {
                 System.out.println("Não foi possível encontrar nenhum cliente com este nome.");
             }
         } catch (SQLException exception) {
+            exception.getMessage();
             exception.printStackTrace();
         }
     }
@@ -57,6 +58,7 @@ public class Search {
             }
 
         } catch (SQLException exception) {
+            exception.getMessage();
             exception.printStackTrace();
         }
     }
@@ -85,6 +87,7 @@ public class Search {
                 System.out.println("Não foi possível encontrar nenhuma venda com este ID.");
             }
         } catch (SQLException exception) {
+            exception.getMessage();
             exception.printStackTrace();
         }
     }
@@ -113,6 +116,7 @@ public class Search {
             }
 
         } catch (SQLException exception) {
+            exception.getMessage();
             exception.printStackTrace();
         }
     }
@@ -141,6 +145,7 @@ public class Search {
             }
 
         } catch (SQLException exception) {
+            exception.getMessage();
             exception.printStackTrace();
         }
 
