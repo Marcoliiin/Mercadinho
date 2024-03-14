@@ -4,8 +4,8 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Seller {
-    String name;
-    Scanner sc = new Scanner(System.in);
+    private final String name;
+    private final Scanner sc = new Scanner(System.in);
 
     public Seller() {
         System.out.println("Digite o nome do vendedor:");
@@ -23,11 +23,11 @@ public class Seller {
 
                 enteringSeller.executeUpdate();
             } catch (SQLException exception) {
-                exception.getMessage();
+                System.err.println("Erro ao cadastrar o venddor: " + exception.getMessage());
                 exception.printStackTrace();
             }
         } catch (SQLException exception) {
-            exception.getMessage();
+            System.err.println("Erro ao se conectar ao banco: " + exception.getMessage());
             exception.printStackTrace();
         }
     }
