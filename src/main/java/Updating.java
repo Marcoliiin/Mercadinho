@@ -7,9 +7,9 @@ import java.sql.ResultSetMetaData;
 
 public class Updating {
 
-    private String tableName;
-    private String columnName;
-    private String entityValue;
+    private final String tableName;
+    private final String columnName;
+    private final String entityValue;
     private int entityId;
     Scanner sc = new Scanner(System.in);
 
@@ -50,10 +50,12 @@ public class Updating {
                 }
 
             } catch (SQLException exception) {
+                exception.getMessage();
                 exception.printStackTrace();
             }
         } catch (SQLException exception) {
             exception.getMessage();
+            exception.printStackTrace();
         }
         return columnType;
     }
@@ -75,11 +77,12 @@ public class Updating {
                     updatingEntity.executeUpdate();
                 }
             } catch (SQLException exception) {
+                exception.getMessage();
                 exception.printStackTrace();
             }
         } catch (SQLException exception) {
+            exception.getMessage();
             exception.printStackTrace();
-
         }
     }
 }
