@@ -23,10 +23,12 @@ public class Seller {
 
                 enteringSeller.executeUpdate();
             } catch (SQLException exception) {
+                exception.getMessage();
                 exception.printStackTrace();
             }
         } catch (SQLException exception) {
-            throw new RuntimeException();
+            exception.getMessage();
+            exception.printStackTrace();
         }
     }
 }
