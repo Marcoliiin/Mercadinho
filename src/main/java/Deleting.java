@@ -57,10 +57,12 @@ public class Deleting {
                         return;
                 }
             } catch (SQLException exception) {
+                exception.getMessage();
                 exception.printStackTrace();
             }
         } catch (SQLException exception) {
             exception.getMessage();
+            exception.printStackTrace();
         }
     }
 }
