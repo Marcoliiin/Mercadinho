@@ -18,6 +18,7 @@ public class Clients {
         System.out.println("Digite o endereço do cliente: ");
         this.adress = sc.nextLine();
     }
+
     public static void createClient(String name, String sex, String adress) {
         try {
             Connection connection = Connecting.getConnection();
@@ -29,10 +30,12 @@ public class Clients {
                 enteringClient.setString(3, adress);
                 enteringClient.executeUpdate();
             } catch (SQLException exception) {
+                exception.getMessage();
                 exception.printStackTrace();
             }
         } catch (SQLException exception) {
-            throw new RuntimeException();
+            exception.getMessage();
+            exception.printStackTrace();
         }
     }
 }
