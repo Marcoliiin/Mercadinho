@@ -6,12 +6,12 @@ import java.util.Scanner;
 
 public class Sale {
 
-    public long productId;
-    public long clientId;
-    public long sellerId;
-    public int totalValue;
-    public int quantitySold;
-    public Scanner sc = new Scanner(System.in);
+    private final long productId;
+    private final long clientId;
+    private final long sellerId;
+    private final int totalValue;
+    private final int quantitySold;
+    private final Scanner sc = new Scanner(System.in);
 
     public Sale(long productId, long clientId, long sellerId, int totalValue, int quantitySold, Scanner sc) {
         System.out.println("Qual a quantidade vendida deste produto?");
@@ -44,11 +44,11 @@ public class Sale {
                 }
 
             } catch (SQLException exception) {
-                exception.getMessage();
+                System.out.println("Erro ao cadastrar a venda: " + exception.getMessage());
                 exception.printStackTrace();
             }
         } catch (SQLException exception) {
-            exception.getMessage();
+            System.err.println("Erro ao se conectar ao banco: " + exception.getMessage());
             exception.printStackTrace();
         }
 
@@ -72,21 +72,45 @@ public class Sale {
                 enteringSaleItem.executeUpdate();
 
             } catch (SQLException exception) {
-                exception.getMessage();
+                System.err.println("Erro ao cadastrar a venda_item: " + exception.getMessage());
                 exception.printStackTrace();
             }
         } catch (SQLException exception) {
-            exception.getMessage();
+            System.err.println("Erro ao se conectar ao banco: " + exception.getMessage());
+            exception.printStackTrace();
+        }
+
+        reduceStock();
+        sellerSale();
+    }
+
+    public void reduceStock() {
+        try (Connection connection = Connecting.getConnection()) {
+            String sql = "UPDATE produto SET estoque = estoque - " + this.quantitySold + " WHERE ID = " + this.productId;
+            try (PreparedStatement update = connection.prepareStatement(sql)) {
+                update.executeUpdate();
+            } catch (SQLException exception) {
+                System.err.println("Erro ao atualizar a tabela produto: " + exception.getMessage());
+                exception.printStackTrace();
+            }
+        } catch (SQLException exception) {
+            System.err.println("Erro ao se conectar ao banco: " + exception.getMessage());
             exception.printStackTrace();
         }
     }
 
-    public void reduceStock() {
-
-    }
-
     public void sellerSale() {
-
+        try (Connection connection = Connecting.getConnection()) {
+            String sql = "UPDATE vendedor SET num_vendas = num_vendas + 1, valor_vendas = valor_vendas + " + this.totalValue + " WHERE ID = " + this.sellerId;
+            try (PreparedStatement update = connection.prepareStatement(sql)) {
+                update.executeUpdate();
+            } catch (SQLException exception) {
+                System.err.println("Erro ao atualizar a tabela vendedor: " + exception.getMessage());
+                exception.printStackTrace();
+            }
+        } catch (SQLException exception) {
+            System.err.println("Erro ao se conectar ao banco: " + exception.getMessage());
+            exception.printStackTrace();
+        }
     }
-
 }
