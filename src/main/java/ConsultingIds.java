@@ -22,9 +22,16 @@ public class ConsultingIds {
                     if (query.next()) {
                         supplierReturn = query.getLong(1);
                     }
+                } catch (SQLException exception) {
+                    exception.getMessage();
+                    exception.printStackTrace();
                 }
+            } catch (SQLException exception) {
+                exception.getMessage();
+                exception.printStackTrace();
             }
         } catch (SQLException exception) {
+            exception.getMessage();
             exception.printStackTrace();
         }
 
@@ -47,9 +54,17 @@ public class ConsultingIds {
                     if (query.next()) {
                         clientReturn = query.getLong(1);
                     }
+
+                } catch (SQLException exception) {
+                    exception.getMessage();
+                    exception.printStackTrace();
                 }
+            } catch (SQLException exception) {
+                exception.getMessage();
+                exception.printStackTrace();
             }
         } catch (SQLException exception) {
+            exception.getMessage();
             exception.printStackTrace();
         }
         return clientReturn;
@@ -72,9 +87,16 @@ public class ConsultingIds {
                     if (query.next()) {
                         sellerReturn = query.getLong(1);
                     }
+                } catch (SQLException exception) {
+                    exception.getMessage();
+                    exception.printStackTrace();
                 }
+            } catch (SQLException exception) {
+                exception.getMessage();
+                exception.printStackTrace();
             }
         } catch (SQLException exception) {
+            exception.getMessage();
             exception.printStackTrace();
         }
         return sellerReturn;
@@ -97,12 +119,17 @@ public class ConsultingIds {
                     if (query.next()) {
                         productReturn = query.getLong(1);
                     }
+                } catch (SQLException exception) {
+                    exception.getMessage();
+                    exception.printStackTrace();
                 }
             } catch (SQLException exception) {
+                exception.getMessage();
                 exception.printStackTrace();
             }
         } catch (SQLException exception) {
-            throw new RuntimeException();
+            exception.getMessage();
+            exception.printStackTrace();
         }
         return productReturn;
     }
@@ -125,11 +152,16 @@ public class ConsultingIds {
                         saleReturn = query.getLong(1);
                     }
                 } catch (SQLException exception) {
+                    exception.getMessage();
                     exception.printStackTrace();
                 }
+            } catch (SQLException exception) {
+                exception.getMessage();
+                exception.printStackTrace();
             }
         } catch (SQLException exception) {
-            throw new RuntimeException();
+            exception.getMessage();
+            exception.printStackTrace();
         }
         return saleReturn;
     }
