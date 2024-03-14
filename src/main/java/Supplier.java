@@ -5,10 +5,10 @@ import java.util.Scanner;
 
 public class Supplier {
 
-    String description;
-    String contact;
-    String adress;
-    Scanner sc = new Scanner(System.in);
+    private final  String description;
+    private final String contact;
+    private final String adress;
+    private final Scanner sc = new Scanner(System.in);
 
     public Supplier() {
         System.out.println("Digite o nome do seu fornecedor: ");
@@ -31,11 +31,11 @@ public class Supplier {
                 enteringSupplier.setString(3, adress);
                 enteringSupplier.executeUpdate();
             } catch (SQLException exception) {
-                exception.getMessage();
+                System.err.println("Erro ao cadastrar o fornecedor: " + exception.getMessage());
                 exception.printStackTrace();
             }
         } catch (SQLException exception) {
-            exception.getMessage();
+            System.err.println("Erro ao se conectar ao banco: " + exception.getMessage());
             exception.printStackTrace();
         }
     }
